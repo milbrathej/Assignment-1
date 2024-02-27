@@ -19,12 +19,12 @@ ax.set_title('Microsoft Stock Price with Moving Averages')
 ax.set_xlabel('Date')
 ax.set_ylabel('Price')
 
-# Plotting candlesticks
+# Plotting candlesticks with black borders
 for date, vals in hist.iterrows():
     color = colors[vals['Close'] > vals['Open']]
     ax.plot([mdates.date2num(date), mdates.date2num(date)], [vals['Low'], vals['High']], color=color)
-    ax.plot([mdates.date2num(date) - 0.2, mdates.date2num(date) + 0.2], [vals['Open'], vals['Open']], color=color)
-    ax.plot([mdates.date2num(date) - 0.2, mdates.date2num(date) + 0.2], [vals['Close'], vals['Close']], color=color)
+    ax.plot([mdates.date2num(date) - 0.2, mdates.date2num(date) + 0.2], [vals['Open'], vals['Open']], color=color, linewidth=1)  # Change linewidth to 1 for black border
+    ax.plot([mdates.date2num(date) - 0.2, mdates.date2num(date) + 0.2], [vals['Close'], vals['Close']], color=color, linewidth=1)  # Change linewidth to 1 for black border
 
 # Plotting moving averages
 ax.plot(hist.index, hist['MA50'], color='blue', label='50-Day Moving Average')
@@ -47,3 +47,4 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
 ax.legend()
 
 plt.show()
+
